@@ -1,11 +1,9 @@
-// /app/api/users/index.ts
-
-import { createUser, getUser } from '@/utils/users';
 import { NextApiRequest, NextApiResponse } from 'next';
+import { createUser, getUsers } from '../../utils/users';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'GET') {
-    const users = await getUser();
+    const users = await getUsers();
     res.status(200).json(users);
   } else if (req.method === 'POST') {
     const newUser = await createUser(req.body);

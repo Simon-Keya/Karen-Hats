@@ -1,20 +1,15 @@
-// /components/shared/Button.tsx
-
 import React from 'react';
 
 interface ButtonProps {
   onClick: () => void;
-  children: React.ReactNode;
-  className?: string;
+  label: string;
+  type?: 'button' | 'submit' | 'reset';
 }
 
-const Button: React.FC<ButtonProps> = ({ onClick, children, className }) => {
+const Button: React.FC<ButtonProps> = ({ onClick, label, type = 'button' }) => {
   return (
-    <button
-      onClick={onClick}
-      className={`bg-blue-500 text-white px-4 py-2 rounded ${className}`}
-    >
-      {children}
+    <button onClick={onClick} type={type} className="btn btn-primary">
+      {label}
     </button>
   );
 };

@@ -1,12 +1,9 @@
-// /app/admin/manage-orders/page.tsx
+import ManageOrders from '../../components/admin/ManageOrders';
 
-import ManageOrders from '@/components/admin/ManageOrders';
-import React from 'react';
-
-const ManageOrdersPage: React.FC = () => {
+const ManageOrdersPage = () => {
   return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">Manage Orders</h1>
+    <div>
+      <h1>Manage Orders</h1>
       <ManageOrders />
     </div>
   );

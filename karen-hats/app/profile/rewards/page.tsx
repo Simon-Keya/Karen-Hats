@@ -1,13 +1,20 @@
-// /app/profile/rewards/page.tsx
+import { useRewards } from '../../../hooks/useRewards';
 
-import Rewards from '@/components/profile/Rewards';
-import React from 'react';
+const RewardsPage = () => {
+  const { rewards } = useRewards();
 
-const RewardsPage: React.FC = () => {
+  if (!rewards.length) {
+    return <div>No rewards yet</div>;
+  }
+
   return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">Rewards</h1>
-      <Rewards />
+    <div>
+      <h1>Your Rewards</h1>
+      <ul>
+        {rewards.map((reward) => (
+          <li key={reward.id}>{reward.description}</li>
+        ))}
+      </ul>
     </div>
   );
 };

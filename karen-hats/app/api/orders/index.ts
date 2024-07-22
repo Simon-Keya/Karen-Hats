@@ -1,7 +1,5 @@
-// /app/api/orders/index.ts
-
-import { createOrder, getOrders } from '@/utils/orders';
 import { NextApiRequest, NextApiResponse } from 'next';
+import { createOrder, getOrders } from '../../../utils/orders';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'GET') {

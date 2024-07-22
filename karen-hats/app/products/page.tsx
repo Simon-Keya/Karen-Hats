@@ -1,26 +1,23 @@
-// /app/products/page.tsx
-
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import ProductCard from '../../components/products/ProductCard';
+import { getProducts } from '../../utils/api';
 
-const ProductsPage: React.FC = () => {
+const ProductsPage = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    axios.get('/api/products')
-      .then(response => setProducts(response.data))
-      .catch(error => console.error('Error fetching products:', error));
+    const fetchProducts = async () => {
+      const productsData = await getProducts();
+      setProducts(productsData);
+    };
+    fetchProducts();
   }, []);
 
   return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">Products</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {products.map((product: any) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
-      </div>
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {products.map((product) => (
+        <ProductCard key={product.id} product={product} />
+      ))}
     </div>
   );
 };

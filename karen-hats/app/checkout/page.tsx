@@ -1,17 +1,27 @@
-// /app/checkout/page.tsx
+import { useState } from 'react';
+import CheckoutForm from '../../components/checkout/CheckoutForm';
+import { useCart } from '../../hooks/useCart';
 
-import CheckoutForm from '@/components/checkout/CheckoutForm';
-import OrderSummary from '@/components/checkout/OrderSummary';
-import React from 'react';
+const CheckoutPage = () => {
+  const { cartItems } = useCart();
+  const [order, setOrder] = useState(null);
 
-const CheckoutPage: React.FC = () => {
+  const handleOrder = (orderData) => {
+    setOrder(orderData);
+  };
+
+  if (!cartItems.length) {
+    return <div>Your cart is empty</div>;
+  }
+
   return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">Checkout</h1>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <CheckoutForm />
-        <OrderSummary />
-      </div>
+    <div>
+      <h1>Checkout</h1>
+      {order ? (
+        <div>Order placed successfully. Your order number is {order.id}</div>
+      ) : (
+        <CheckoutForm cartItems={cartItems} onOrderPlaced={handleOrder} />
+      )}
     </div>
   );
 };

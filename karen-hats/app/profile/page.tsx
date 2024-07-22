@@ -1,17 +1,21 @@
-// /app/profile/page.tsx
+import { useSession } from 'next-auth/react';
+import Orders from '../../components/profile/Orders';
+import Profile from '../../components/profile/Profile';
 
-import Orders from '@/components/profile/Orders';
-import Profile from '@/components/profile/Profile';
-import Rewards from '@/components/profile/Rewards';
-import React from 'react';
+const ProfilePage = () => {
+  const { data: session } = useSession();
 
-const ProfilePage: React.FC = () => {
+  if (!session) {
+    return <div>Please log in to view your profile</div>;
+  }
+
+  // Assuming session.user has an id property
+  const userId = (session.user as { id: string }).id;
+
   return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">Profile</h1>
-      <Profile />
-      <Orders />
-      <Rewards />
+    <div>
+      <Profile user={session.user} />
+      <Orders userId={userId} />
     </div>
   );
 };

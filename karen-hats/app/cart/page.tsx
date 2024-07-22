@@ -1,13 +1,20 @@
-// /app/cart/page.tsx
+import CartItem from '../../components/cart/CartItem';
+import { useCart } from '../../hooks/useCart';
 
-import React from 'react';
-import Cart from '../../components/cart/Cart';
+const CartPage = () => {
+  const { cartItems, removeFromCart } = useCart();
 
-const CartPage: React.FC = () => {
+  if (cartItems.length === 0) {
+    return <div>Your cart is empty</div>;
+  }
+
   return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">Shopping Cart</h1>
-      <Cart />
+    <div>
+      <h1>Your Cart</h1>
+      {cartItems.map((item) => (
+        <CartItem key={item.id} item={item} onRemove={() => removeFromCart(item.id)} />
+      ))}
+      <div>Total: ${cartItems.reduce((total, item) => total + item.price, 0)}</div>
     </div>
   );
 };
