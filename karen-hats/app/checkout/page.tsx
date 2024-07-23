@@ -1,12 +1,23 @@
 import { useState } from 'react';
 import CheckoutForm from '../../components/checkout/CheckoutForm';
-import { useCart } from '../../hooks/useCart';
+import useCart from '../../hooks/useCart';
+
+interface Order {
+  id: string;
+}
+
+interface CartItem {
+  id: string;
+  name: string;
+  price: number;
+  quantity: number;
+}
 
 const CheckoutPage = () => {
-  const { cartItems } = useCart();
-  const [order, setOrder] = useState(null);
+  const { cart: cartItems } = useCart();
+  const [order, setOrder] = useState<Order | null>(null);
 
-  const handleOrder = (orderData) => {
+  const handleOrder = (orderData: Order) => {
     setOrder(orderData);
   };
 

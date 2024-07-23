@@ -1,8 +1,13 @@
 import { useEffect, useState } from 'react';
 import api from '../utils/api';
 
+interface Reward {
+  id: string;
+  description: string;
+}
+
 const useRewards = () => {
-  const [rewards, setRewards] = useState([]);
+  const [rewards, setRewards] = useState<Reward[]>([]);
 
   useEffect(() => {
     const fetchRewards = async () => {

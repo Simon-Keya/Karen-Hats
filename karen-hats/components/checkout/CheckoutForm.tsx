@@ -3,7 +3,23 @@ import Button from '../../app/shared/Button';
 import Input from '../../app/shared/Input';
 import { createOrder } from '../../utils/api';
 
-const CheckoutForm: React.FC = () => {
+interface CartItem {
+  id: string;
+  name: string;
+  price: number;
+  quantity: number;
+}
+
+interface Order {
+  id: string;
+}
+
+interface CheckoutFormProps {
+  cartItems: CartItem[];
+  onOrderPlaced: (orderData: Order) => void;
+}
+
+const CheckoutForm: React.FC<CheckoutFormProps> = ({ cartItems, onOrderPlaced }) => {
   const [name, setName] = useState('');
   const [address, setAddress] = useState('');
   const [cardNumber, setCardNumber] = useState('');
@@ -18,8 +34,10 @@ const CheckoutForm: React.FC = () => {
       cardNumber,
       expiryDate,
       cvv,
+      cartItems, // Include cart items in the order data
     };
-    await createOrder(orderData);
+    const createdOrder = await createOrder(orderData);
+    onOrderPlaced(createdOrder);
     // Handle success or error
   };
 

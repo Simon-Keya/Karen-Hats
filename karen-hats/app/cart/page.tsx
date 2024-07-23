@@ -1,20 +1,21 @@
+import React from 'react';
 import CartItem from '../../components/cart/CartItem';
-import { useCart } from '../../hooks/useCart';
+import useCart from '../../hooks/useCart'; // Corrected import statement
 
-const CartPage = () => {
-  const { cartItems, removeFromCart } = useCart();
+const CartPage: React.FC = () => {
+  const { cart, removeItemFromCart } = useCart();
 
-  if (cartItems.length === 0) {
+  if (cart.length === 0) {
     return <div>Your cart is empty</div>;
   }
 
   return (
     <div>
       <h1>Your Cart</h1>
-      {cartItems.map((item) => (
-        <CartItem key={item.id} item={item} onRemove={() => removeFromCart(item.id)} />
+      {cart.map((item) => (
+        <CartItem key={item.id} item={item} onRemove={() => removeItemFromCart(item.id)} />
       ))}
-      <div>Total: ${cartItems.reduce((total, item) => total + item.price, 0)}</div>
+      <div>Total: ${cart.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2)}</div>
     </div>
   );
 };

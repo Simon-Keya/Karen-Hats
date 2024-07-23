@@ -1,13 +1,21 @@
 import { useEffect, useState } from 'react';
 
+export interface CartItem {
+  id: string;
+  name: string;
+  price: number;
+  quantity: number;
+  imageUrl: string; // Ensure the imageUrl is included if needed in CartItem
+}
+
 const useCart = () => {
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState<CartItem[]>([]);
 
   useEffect(() => {
     // Add logic to fetch cart from local storage or API
   }, []);
 
-  const addItemToCart = (item: any) => {
+  const addItemToCart = (item: CartItem) => {
     setCart((prevCart) => [...prevCart, item]);
   };
 

@@ -6,8 +6,8 @@ interface Product {
   name: string;
   description: string;
   price: number;
+  stock: number;
   category: string;
-  imageUrl: string;
 }
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -29,7 +29,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
   } else if (req.method === 'POST') {
     try {
-      const { name, description, price, category, imageUrl } = req.body;
+      const { name, description, price, stock, category } = req.body;
 
       // Replace this URL with your backend create product endpoint
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products`, {
@@ -37,7 +37,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ name, description, price, category, imageUrl }),
+        body: JSON.stringify({ name, description, price, stock, category }),
       });
 
       if (!response.ok) {

@@ -2,10 +2,18 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { getProductById } from '../../../utils/api';
 
+interface Product {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  imageUrl: string; // Assuming you have an imageUrl property
+}
+
 const ProductDetailPage = () => {
   const router = useRouter();
   const { id } = router.query;
-  const [product, setProduct] = useState(null);
+  const [product, setProduct] = useState<Product | null>(null);
 
   useEffect(() => {
     const fetchProduct = async () => {

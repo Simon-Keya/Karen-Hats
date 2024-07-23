@@ -1,14 +1,9 @@
 import Image from 'next/image';
 import React from 'react';
+import { CartItem as CartItemType } from '../../hooks/useCart';
 
 interface CartItemProps {
-  item: {
-    id: string;
-    name: string;
-    price: number;
-    quantity: number;
-    imageUrl: string;
-  };
+  item: CartItemType;
   onRemove: (id: string) => void;
 }
 

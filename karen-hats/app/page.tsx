@@ -1,18 +1,30 @@
-// /app/page.tsx
+// src/app/layout.tsx
+import { Inter } from '@next/font/google';
+import { SessionProvider } from 'next-auth/react'; // Add session provider if using next-auth
+import Head from 'next/head';
+import { ReactNode } from 'react';
+import '../styles/globals.css';
 
-import Link from 'next/link';
-import React from 'react';
+const inter = Inter({ subsets: ['latin'] });
 
-const HomePage: React.FC = () => {
+interface LayoutProps {
+  children: ReactNode;
+}
+
+export default function Layout({ children }: LayoutProps) {
   return (
-    <div className="p-4">
-      <h1 className="text-3xl font-bold mb-4">Welcome to Karen Hats</h1>
-      <p className="mb-4">Your one-stop shop for all kinds of hats, caps, and mavins.</p>
-      <Link href="/products">
-        <a className="bg-blue-500 text-white px-4 py-2 rounded">Shop Now</a>
-      </Link>
-    </div>
+    <html lang="en">
+      <Head>
+        <title>My Next.js Application</title>
+        <meta name="description" content="My Next.js application with Tailwind CSS" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <body className={inter.className}>
+        <SessionProvider>
+          {/* Global layout components like Header, Footer */}
+          {children}
+        </SessionProvider>
+      </body>
+    </html>
   );
-};
-
-export default HomePage;
+}
