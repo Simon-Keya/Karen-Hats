@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import Button from '../../app/shared/Button';
-import Input from '../../app/shared/Input';
 import useAuth from '../../hooks/useAuth';
+import Button from '../../shared/Button';
+import Input from '../../shared/Input';
 
 const RegisterForm: React.FC = () => {
   const [email, setEmail] = useState('');

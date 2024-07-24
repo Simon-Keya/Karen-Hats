@@ -1,19 +1,23 @@
+// src/components/products/ProductList.tsx
+
 import React from 'react';
 import ProductCard from './ProductCard';
 
+interface Product {
+  id: number;
+  name: string;
+  price: string;
+  imageUrl: string;
+}
+
 interface ProductListProps {
-  products: {
-    id: string;
-    name: string;
-    price: number;
-    imageUrl: string;
-  }[];
+  products: Product[];
 }
 
 const ProductList: React.FC<ProductListProps> = ({ products }) => {
   return (
-    <div className="product-list">
-      {products.map(product => (
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      {products.map((product) => (
         <ProductCard key={product.id} product={product} />
       ))}
     </div>

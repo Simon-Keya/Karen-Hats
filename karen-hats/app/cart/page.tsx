@@ -1,6 +1,6 @@
 import React from 'react';
-import CartItem from '../../components/cart/CartItem';
-import useCart from '../../hooks/useCart'; // Corrected import statement
+import CartItem from '../components/cart/CartItem';
+import useCart from '../hooks/useCart'; // Corrected import statement
 
 const CartPage: React.FC = () => {
   const { cart, removeItemFromCart } = useCart();

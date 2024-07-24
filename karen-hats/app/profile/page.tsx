@@ -1,6 +1,6 @@
 import { useSession } from 'next-auth/react';
-import Orders from '../../components/profile/Orders';
-import Profile from '../../components/profile/Profile';
+import Orders from '../components/profile/Orders';
+import Profile from '../components/profile/Profile';
 
 const ProfilePage = () => {
   const { data: session } = useSession();

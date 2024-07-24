@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Button from '../../app/shared/Button';
-import Input from '../../app/shared/Input';
+import Button from '../../shared/Button';
+import Input from '../../shared/Input';
 import { createOrder } from '../../utils/api';
 
 interface CartItem {

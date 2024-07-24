@@ -1,15 +1,22 @@
-import React from 'react';
-import Footer from '../components/common/Footer';
-import Header from '../components/common/Header';
+import { ReactNode } from 'react';
+import Footer from './components/common/Footer';
+import Header from './components/common/Header';
+import './globals.css';
 
-const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+interface RootLayoutProps {
+  children: ReactNode;
+}
+
+const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
   return (
-    <div>
-      <Header />
-      <main>{children}</main>
-      <Footer />
-    </div>
+    <html lang="en">
+      <body>
+        <Header />
+        <main>{children}</main>
+        <Footer />
+      </body>
+    </html>
   );
 };
 
-export default Layout;
+export default RootLayout;

@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import CheckoutForm from '../../components/checkout/CheckoutForm';
-import useCart from '../../hooks/useCart';
+import CheckoutForm from '../components/checkout/CheckoutForm';
+import useCart from '../hooks/useCart';
 
 interface Order {
   id: string;

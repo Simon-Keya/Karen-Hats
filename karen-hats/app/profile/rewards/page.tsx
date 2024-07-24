@@ -1,4 +1,4 @@
-import useRewards from '../../../hooks/useRewards';
+import useRewards from '../../hooks/useRewards';
 
 interface Reward {
   id: string;
