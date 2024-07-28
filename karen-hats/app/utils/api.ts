@@ -39,4 +39,9 @@ export const createUser = async (userData: any) => {
   return response.data;
 };
 
+export const getCartItems = async () => {
+  const response = await api.get('/api/cart');
+  return response.data;
+};
+
 export default api;

@@ -1,5 +1,3 @@
-// src/app/page.tsx
-
 import Head from 'next/head';
 import React from 'react';
 import ProductList from './components/products/ProductList';
@@ -14,13 +12,13 @@ const HomePage: React.FC = () => {
 
   return (
     <Layout>
-      <div className="container mx-auto py-8">
-        <Head>
-          <title>Karen Hats - Home</title>
-          <meta name="description" content="Welcome to Karen Hats, your one-stop shop for all things hats!" />
-        </Head>
-        <h1>Welcome to Karen Hats</h1>
-        <p>We offer a wide variety of hats for all occasions. Browse our selection of:</p>
+      <Head>
+        <title>Karen Hats - Home</title>
+        <meta name="description" content="Welcome to Karen Hats, your one-stop shop for all things hats!" />
+      </Head>
+      <div className="container mx-auto py-8 bg-gradient-to-r from-gray-700 via-gray-500 to-orange-700 text-black md:px-4 lg:px-8 rounded-lg shadow-md">
+        <h1 className="text-3xl font-bold mb-6">Welcome to Karen Hats</h1>
+        <p className="text-lg mb-6">We offer a wide variety of hats for all occasions. Browse our selection of:</p>
         <ProductList products={products} />
       </div>
     </Layout>

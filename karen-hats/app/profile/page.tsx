@@ -1,3 +1,6 @@
+
+"use client";
+
 import { useSession } from 'next-auth/react';
 import Orders from '../components/profile/Orders';
 import Profile from '../components/profile/Profile';

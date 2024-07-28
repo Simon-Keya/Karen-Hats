@@ -1,3 +1,5 @@
+"use client"
+
 import { useState } from 'react';
 import CheckoutForm from '../components/checkout/CheckoutForm';
 import useCart from '../hooks/useCart';

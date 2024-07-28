@@ -1,21 +1,23 @@
+// src/components/products/ProductCard.tsx
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
+import { FaShoppingCart } from 'react-icons/fa';
 
 interface ProductCardProps {
   product: {
     id: number;
     name: string;
-    price: number; // Ensure this is always a number
+    description: string;
+    price: number | string;
     imageUrl: string;
   };
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
-  // Ensure price is a number and convert if necessary
   const formattedPrice = typeof product.price === 'number'
     ? product.price.toFixed(2)
-    : '0.00'; // Fallback if price is not a number
+    : parseFloat(product.price).toFixed(2);
 
   return (
     <div className="border rounded-lg shadow-lg overflow-hidden">
@@ -24,16 +26,20 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           <Image 
             src={product.imageUrl} 
             alt={product.name} 
-            layout="fill" 
-            objectFit="cover" 
+            fill
+            style={{ objectFit: 'cover' }} 
             className="w-full h-full"
           />
           <div className="absolute inset-0 bg-transparent" aria-hidden="true"></div>
         </div>
       </Link>
       <div className="p-4">
-        <h2 className="text-xl font-semibold mb-2">{product.name}</h2>
-        <p className="text-lg text-gray-700">${formattedPrice}</p>
+        <h2 className="text-xl font-semibold mb-2 text-gray-200">{product.name}</h2>
+        <p className="text-gray-300 mb-4">{product.description}</p>
+        <p className="text-lg text-gray-300">KSH {formattedPrice}</p>
+        <button className="mt-4 w-full bg-white hover:bg-orange-500 text-black font-bold py-2 px-4 rounded flex items-center justify-center">
+          <FaShoppingCart className="mr-2" /> Add to Cart
+        </button>
       </div>
     </div>
   );
