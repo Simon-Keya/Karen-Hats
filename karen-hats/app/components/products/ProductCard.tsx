@@ -1,4 +1,3 @@
-// src/components/products/ProductCard.tsx
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
@@ -20,7 +19,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     : parseFloat(product.price).toFixed(2);
 
   return (
-    <div className="border rounded-lg shadow-lg overflow-hidden">
+    <div className="border rounded-lg shadow-lg overflow-hidden bg-white">
       <Link href={`/products/${product.id}`} passHref>
         <div className="relative w-full h-48 cursor-pointer">
           <Image 
@@ -34,10 +33,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         </div>
       </Link>
       <div className="p-4">
-        <h2 className="text-xl font-semibold mb-2 text-gray-200">{product.name}</h2>
-        <p className="text-gray-300 mb-4">{product.description}</p>
-        <p className="text-lg text-gray-300">KSH {formattedPrice}</p>
-        <button className="mt-4 w-full bg-white hover:bg-orange-500 text-black font-bold py-2 px-4 rounded flex items-center justify-center">
+        <h2 className="text-xl font-semibold mb-2 text-gray-800">{product.name}</h2>
+        <p className="text-gray-600 mb-4">{product.description}</p>
+        <p className="text-lg text-gray-800">KSH {formattedPrice}</p>
+        <button className="mt-4 w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded flex items-center justify-center">
           <FaShoppingCart className="mr-2" /> Add to Cart
         </button>
       </div>
