@@ -1,15 +1,21 @@
+// shared/Button.tsx
 import React from 'react';
 
 interface ButtonProps {
-  onClick: () => void;
-  label: string;
+  onClick?: () => void;
   type?: 'button' | 'submit' | 'reset';
+  className?: string;
+  children: React.ReactNode;
 }
 
-const Button: React.FC<ButtonProps> = ({ onClick, label, type = 'button' }) => {
+const Button: React.FC<ButtonProps> = ({ onClick, type = 'button', className, children }) => {
   return (
-    <button onClick={onClick} type={type} className="btn btn-primary">
-      {label}
+    <button
+      onClick={onClick}
+      type={type}
+      className={`px-4 py-2 rounded focus:outline-none ${className}`}
+    >
+      {children}
     </button>
   );
 };

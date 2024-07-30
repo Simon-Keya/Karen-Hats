@@ -19,8 +19,8 @@ const Sidebar: React.FC = () => {
   const [activeItem, setActiveItem] = useState<string | null>(null);
 
   return (
-    <div className="w-64 bg-gradient-to-r from-gray-500  to-orange-500 text-white h-full p-6 rounded-lg shadow-md">
-      <h2 className="text-2xl font-bold mb-6">Products</h2>
+    <div className="w-full sm:w-64 bg-gradient-to-r from-gray-500 to-orange-500 text-white h-full p-6 rounded-lg shadow-md">
+      <h2 className="text-2xl font-bold mb-6 text-center sm:text-left">Products</h2>
       <ul>
         {Object.keys(categories).map((product) => (
           <li
@@ -29,11 +29,11 @@ const Sidebar: React.FC = () => {
             onMouseEnter={() => setActiveItem(product)}
             onMouseLeave={() => setActiveItem(null)}
           >
-            <div className="cursor-pointer p-2 hover:bg-orange-500 rounded">
+            <div className="cursor-pointer p-2 hover:bg-orange-500 rounded text-center sm:text-left">
               <span className="capitalize">{product}</span>
             </div>
             {activeItem === product && (
-              <ul className="ml-4 mt-2">
+              <ul className="ml-0 sm:ml-4 mt-2 text-center sm:text-left">
                 {categories[product as keyof Category].map((category: string) => (
                   <li key={category} className="mb-2">
                     <Link href={`/${product}/${category.toLowerCase().replace(' ', '-')}`} passHref>

@@ -1,6 +1,7 @@
-"use client"
+"use client";
 
 import React, { useState } from 'react';
+import { FaGoogle } from 'react-icons/fa';
 import useAuth from '../../hooks/useAuth';
 import Button from '../../shared/Button';
 import Input from '../../shared/Input';
@@ -16,12 +17,41 @@ const RegisterForm: React.FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <Input value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" type="email" />
-      <Input value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" type="password" />
-      <Button onClick={() => handleSubmit} label="Register" type="submit" />
-      <Button onClick={() => signInWithGoogle()} label="Sign in with Google" type="button" />
-    </form>
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-md">
+        <h2 className="text-2xl font-bold mb-6 text-center">Register</h2>
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <Input
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email"
+            type="email"
+            className="w-full"
+          />
+          <Input
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
+            type="password"
+            className="w-full"
+          />
+          <Button
+            onClick={() => {}}
+            type="submit"
+            className="w-full bg-orange-500 hover:bg-orange-600 text-white"
+          >
+            Register
+          </Button>
+          <Button
+            onClick={signInWithGoogle}
+            type="button"
+            className="w-full flex items-center justify-center bg-gray-600 hover:bg-gray-700 text-white"
+          >
+            <FaGoogle className="mr-2" /> Sign in with Google
+          </Button>
+        </form>
+      </div>
+    </div>
   );
 };
 

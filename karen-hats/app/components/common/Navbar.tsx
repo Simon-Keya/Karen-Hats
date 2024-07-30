@@ -1,4 +1,4 @@
-"use client"
+'use client';
 
 import Image from 'next/image';
 import Link from 'next/link';
@@ -54,17 +54,25 @@ const Navbar: React.FC = () => {
             </div>
             {accountDropdown && (
               <div className="absolute right-0 mt-2 bg-white text-black rounded-lg shadow-lg w-48 z-10">
-                <button className="block w-full px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 rounded-t-lg cursor-pointer">
-                  Sign Up
-                </button>
+                <Link href="/auth/register" passHref>
+                  <span className="block w-full px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 rounded-t-lg cursor-pointer">
+                    Sign Up
+                  </span>
+                </Link>
                 <Link href="/profile" passHref>
-                  <span className="block px-4 py-2 hover:bg-gray-100 cursor-pointer">My Account</span>
+                  <span className="block px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                    My Account
+                  </span>
                 </Link>
                 <Link href="/orders" passHref>
-                  <span className="block px-4 py-2 hover:bg-gray-100 cursor-pointer">Orders</span>
+                  <span className="block px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                    Orders
+                  </span>
                 </Link>
                 <Link href="/saved-items" passHref>
-                  <span className="block px-4 py-2 hover:bg-gray-100 cursor-pointer">Saved Items</span>
+                  <span className="block px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                    Saved Items
+                  </span>
                 </Link>
               </div>
             )}
@@ -81,22 +89,34 @@ const Navbar: React.FC = () => {
             {helpDropdown && (
               <div className="absolute right-0 mt-2 bg-white text-black rounded-lg shadow-lg w-48 z-10">
                 <Link href="/help-center" passHref>
-                  <span className="block px-4 py-2 hover:bg-gray-100 cursor-pointer">Help Center</span>
+                  <span className="block px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                    Help Center
+                  </span>
                 </Link>
                 <Link href="/place-order" passHref>
-                  <span className="block px-4 py-2 hover:bg-gray-100 cursor-pointer">Place an Order</span>
+                  <span className="block px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                    Place an Order
+                  </span>
                 </Link>
                 <Link href="/track-order" passHref>
-                  <span className="block px-4 py-2 hover:bg-gray-100 cursor-pointer">Track Your Order</span>
+                  <span className="block px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                    Track Your Order
+                  </span>
                 </Link>
                 <Link href="/order-cancellation" passHref>
-                  <span className="block px-4 py-2 hover:bg-gray-100 cursor-pointer">Order Cancellation</span>
+                  <span className="block px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                    Order Cancellation
+                  </span>
                 </Link>
                 <Link href="/returns-refunds" passHref>
-                  <span className="block px-4 py-2 hover:bg-gray-100 cursor-pointer">Returns & Refunds</span>
+                  <span className="block px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                    Returns & Refunds
+                  </span>
                 </Link>
                 <Link href="/payments" passHref>
-                  <span className="block px-4 py-2 hover:bg-gray-100 cursor-pointer">Payments</span>
+                  <span className="block px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                    Payments
+                  </span>
                 </Link>
               </div>
             )}
