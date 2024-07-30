@@ -5,7 +5,8 @@ import ProductCard from './ProductCard';
 interface Product {
   id: number;
   name: string;
-  price: string;
+  description?: string;
+  price: number | string;
   imageUrl: string;
 }
 
@@ -18,9 +19,10 @@ interface Section {
 
 interface ProductListProps {
   sections: Section[];
+  showAddToCart: boolean; // Add this prop
 }
 
-const ProductList: React.FC<ProductListProps> = ({ sections }) => {
+const ProductList: React.FC<ProductListProps> = ({ sections, showAddToCart }) => {
   return (
     <div>
       {sections.map((section) => (
@@ -35,7 +37,7 @@ const ProductList: React.FC<ProductListProps> = ({ sections }) => {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 mt-4">
             {section.products.map((product) => (
-              <ProductCard key={product.id} product={product} />
+              <ProductCard key={product.id} product={product} showAddToCart={showAddToCart} />
             ))}
           </div>
         </div>
