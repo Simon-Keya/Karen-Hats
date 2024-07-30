@@ -1,24 +1,31 @@
 // src/app/cart/page.tsx
 "use client"
 
-import React, { useEffect, useState } from 'react';
+// src/app/cart/page.tsx
+
+import React from 'react';
 import CartItem from '../components/cart/CartItem';
 
-interface CartItem {
+interface CartItemType {
   id: string;
   name: string;
   price: number;
   quantity: number;
+  imageUrl: string; // Ensure this is included
 }
 
 const CartPage: React.FC = () => {
-  const [cart, setCart] = useState<CartItem[]>([]);
-
-  useEffect(() => {
-    // Fetch cart items from local storage
-    const savedCart = JSON.parse(localStorage.getItem('cart') || '[]');
-    setCart(savedCart);
-  }, []);
+  // Mock cart data - replace with actual data fetching logic
+  const [cart, setCart] = React.useState<CartItemType[]>([
+    // Example cart item, make sure to fetch and set real data
+    {
+      id: '1',
+      name: 'Example Product',
+      price: 10.00,
+      quantity: 1,
+      imageUrl: '/path/to/image.jpg', // Ensure the URL is correct
+    },
+  ]);
 
   const removeItemFromCart = (id: string) => {
     const updatedCart = cart.filter(item => item.id !== id);
