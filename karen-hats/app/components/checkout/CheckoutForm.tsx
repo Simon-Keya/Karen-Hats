@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React, { useState } from 'react';
 import Button from '../../shared/Button';
@@ -50,7 +50,9 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ cartItems, onOrderPlaced })
       <Input value={cardNumber} onChange={(e) => setCardNumber(e.target.value)} placeholder="Card Number" type="text" />
       <Input value={expiryDate} onChange={(e) => setExpiryDate(e.target.value)} placeholder="Expiry Date" type="text" />
       <Input value={cvv} onChange={(e) => setCvv(e.target.value)} placeholder="CVV" type="text" />
-      <Button onClick={() => {}} label="Place Order" type="submit" />
+      <Button type="submit" className="bg-blue-500 text-white hover:bg-blue-600">
+        Place Order
+      </Button>
     </form>
   );
 };

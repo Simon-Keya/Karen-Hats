@@ -66,7 +66,7 @@ const LoginForm: React.FC = () => {
             type="button"
             className="w-full flex items-center justify-center bg-gray-600 hover:bg-gray-700 text-white"
           >
-            <FaGoogle className="mr-2" /> Sign in with Google
+            <FaGoogle className="mr-2" /> Login with Google
           </Button>
           <button
             type="button"
