@@ -1,9 +1,30 @@
-import React from 'react';
+// src/app/cart/page.tsx
+"use client"
+
+import React, { useEffect, useState } from 'react';
 import CartItem from '../components/cart/CartItem';
-import useCart from '../hooks/useCart'; // Corrected import statement
+
+interface CartItem {
+  id: string;
+  name: string;
+  price: number;
+  quantity: number;
+}
 
 const CartPage: React.FC = () => {
-  const { cart, removeItemFromCart } = useCart();
+  const [cart, setCart] = useState<CartItem[]>([]);
+
+  useEffect(() => {
+    // Fetch cart items from local storage
+    const savedCart = JSON.parse(localStorage.getItem('cart') || '[]');
+    setCart(savedCart);
+  }, []);
+
+  const removeItemFromCart = (id: string) => {
+    const updatedCart = cart.filter(item => item.id !== id);
+    setCart(updatedCart);
+    localStorage.setItem('cart', JSON.stringify(updatedCart));
+  };
 
   if (cart.length === 0) {
     return <div>Your cart is empty</div>;

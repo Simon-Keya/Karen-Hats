@@ -1,6 +1,7 @@
+"use client"
+
 import React from 'react';
 import { getProducts } from '../../utils/api';
-import Sidebar from '../common/Sidebar';
 
 // Define the type for a product
 type Product = {
@@ -22,7 +23,6 @@ const ManageProducts: React.FC = () => {
 
   return (
     <div className="manage-products">
-      <Sidebar />
       <div className="content">
         <h1>Manage Products</h1>
         <ul>

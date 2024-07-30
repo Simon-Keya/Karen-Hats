@@ -9,7 +9,7 @@ import { getProducts } from '../utils/api';
 interface Product {
   id: number;
   name: string;
-  description: string;
+  description?: string; // Optional description
   price: number; // Keep price as number
   imageUrl: string;
 }
@@ -30,7 +30,8 @@ const ProductsPage = () => {
       {products.map((product) => (
         <ProductCard 
           key={product.id} 
-          product={product} // Pass the product with price as number
+          product={product} 
+          showAddToCart={true} // Provide the required prop
         />
       ))}
     </div>

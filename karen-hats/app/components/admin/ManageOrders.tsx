@@ -1,6 +1,7 @@
+"use client"
+
 import React from 'react';
 import { getOrders } from '../../utils/api';
-import Sidebar from '../common/Sidebar';
 
 // Define the type for an order
 type Order = {
@@ -22,7 +23,6 @@ const ManageOrders: React.FC = () => {
 
   return (
     <div className="manage-orders">
-      <Sidebar />
       <div className="content">
         <h1>Manage Orders</h1>
         <ul>

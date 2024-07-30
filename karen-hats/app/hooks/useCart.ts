@@ -1,35 +1,36 @@
-"use client"
+// src/hooks/useCart.ts
+"use client";
 
 import { useEffect, useState } from 'react';
 
-export interface CartItem {
+interface CartItem {
   id: string;
   name: string;
   price: number;
   quantity: number;
-  imageUrl: string; // Ensure the imageUrl is included if needed in CartItem
 }
 
-const useCart = () => {
+interface UseCartReturn {
+  cart: CartItem[];
+  removeItemFromCart: (id: string) => void;
+}
+
+const useCart = (): UseCartReturn => {
   const [cart, setCart] = useState<CartItem[]>([]);
 
   useEffect(() => {
-    // Add logic to fetch cart from local storage or API
+    // Fetch cart items from local storage or an API
+    const savedCart = JSON.parse(localStorage.getItem('cart') || '[]');
+    setCart(savedCart);
   }, []);
 
-  const addItemToCart = (item: CartItem) => {
-    setCart((prevCart) => [...prevCart, item]);
+  const removeItemFromCart = (id: string) => {
+    const updatedCart = cart.filter(item => item.id !== id);
+    setCart(updatedCart);
+    localStorage.setItem('cart', JSON.stringify(updatedCart));
   };
 
-  const removeItemFromCart = (itemId: string) => {
-    setCart((prevCart) => prevCart.filter((item) => item.id !== itemId));
-  };
-
-  const clearCart = () => {
-    setCart([]);
-  };
-
-  return { cart, addItemToCart, removeItemFromCart, clearCart };
+  return { cart, removeItemFromCart };
 };
 
 export default useCart;
