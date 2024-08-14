@@ -1,5 +1,6 @@
 "use client";
 
+import Link from 'next/link';
 import React, { useState } from 'react';
 import { FaGoogle } from 'react-icons/fa';
 import useAuth from '../../hooks/useAuth';
@@ -10,7 +11,7 @@ const LoginForm: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
-  const { handleLogin, signInWithGoogle, forgotPassword } = useAuth();
+  const { handleLogin, signInWithGoogle } = useAuth();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -19,10 +20,6 @@ const LoginForm: React.FC = () => {
 
   const handleGoogleSignIn = () => {
     signInWithGoogle();
-  };
-
-  const handleForgotPassword = () => {
-    forgotPassword(email);
   };
 
   return (
@@ -68,13 +65,11 @@ const LoginForm: React.FC = () => {
           >
             <FaGoogle className="mr-2" /> Login with Google
           </Button>
-          <button
-            type="button"
-            onClick={handleForgotPassword}
-            className="block w-full text-center text-gray-500 hover:text-gray-700"
-          >
-            Forgot Password?
-          </button>
+          <Link href="/auth/reset-password" passHref>
+            <span className="block w-full text-center text-gray-500 hover:text-gray-700 cursor-pointer">
+              Forgot Password?
+            </span>
+          </Link>
         </form>
       </div>
     </div>
