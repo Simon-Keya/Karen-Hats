@@ -44,4 +44,28 @@ export const getCartItems = async () => {
   return response.data;
 };
 
+// Fetch user settings
+export const fetchUserSettings = async () => {
+  const response = await axios.get("/api/users/settings");
+  return response.data;
+};
+
+// Update user settings
+export const updateUserSettings = async (data: { username: string; email: string }) => {
+  const response = await axios.put("/api/users/settings", data);
+  return response.data;
+};
+
+// Fetch admin settings
+export const fetchAdminSettings = async () => {
+  const response = await axios.get("/api/admin/settings");
+  return response.data;
+};
+
+// Update admin settings
+export const updateAdminSettings = async (data: { siteName: string; contactEmail: string }) => {
+  const response = await axios.put("/api/admin/settings", data);
+  return response.data;
+};
+
 export default api;
