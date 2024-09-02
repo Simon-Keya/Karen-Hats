@@ -3,31 +3,20 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import { FaCreditCard, FaLock, FaShippingFast, FaStar } from 'react-icons/fa';
-import heroBanner from '../public/images/hero-banner.jpg'; // Local import example
 import Carousel from './components/carousel/Carousel';
 import ProductList from './components/products/ProductList';
 import Layout from './layout';
 
-// Function to extract and shorten product name from the image URL
-const extractNameFromImageUrl = (url: string) => {
-  const filename = url.split('/').pop()?.split('.')[0];
-  return filename ? filename.replace(/_/g, ' ').split(' ').slice(0, 3).join(' ') : 'Unknown';
-};
-
 const HomePage: React.FC = () => {
   const imageUrls = [
+    '/images/hero-banner.jpg',
     '/images/hat1.jpg',
     '/images/Black Bucket Hat.png',
     '/images/47 New York Yankees MLB Classic Baseball Hat.png',
     '/images/2pcs Couple Heart Embroidery Bucket Hat.png',
-    '/images/21 Types of Hats for Men That Will Boost Your Style _ Dapper Confidential.png',
-    '/images/1pc Stylish Men Outdoor Camping Sports Hat.png',
-    '/images/$5 off $50 Sale Special for New Users_Embroidery Smile Face Bucket Hat.png',
     '/images/Two Tone Plaid Pattern Bucket Hat.png',
     '/images/Adams Headwear - Vacationer Dyed Bucket Hat - Navy _ Large.png',
     '/images/Bonnet Moncler Bleu.png',
-    '/images/AUTUMN Golf Logo Cotton Baseball Cap Sports Golf Snapback Outdoor Simp.png',
-    '/images/1 Stück Unisex Cap Casual Plain Acryl Baseball Cap Einstellbare Hysteresenhüte für Frauen Männer Hip Hop Cap Street Dad Hat - Rot _ 54cm-62cm.png',
     '/images/Bowler (Derby) Wool Hat _ Conner Hats.png',
     '/images/Bucket Hat Adidas online _ Hattar.png',
     '/images/New York Yankees Hats Caps Aesthetic.png',
@@ -37,27 +26,45 @@ const HomePage: React.FC = () => {
     '/images/Bonnet Moncler Bleu.png',
     '/images/Boné de beisebol masculino sólido.png',
     '/images/Bucket Hats.png',
-    '/images/C_C Unisex 100% Cotton Packable Reversible Tie Dye Bucket Sun Hat.png',
+    '/images/Unisex Cotton Packable Reversible Tie Dye Bucket Sun Hat.png',
     '/images/Burberry - Vintage Check Cotton Bucket Hat - Mens - Beige Multi.png',
     '/images/Chapéu Bucket Hat Smile Feliz.png'
-    // your image URLs here...
   ];
+
+  const extractNameFromImageUrl = (url: string): string => {
+    const name = url.split('/').pop()?.split('.')[0]?.replace(/[-_]/g, ' ');
+    return name ? name : 'Unknown Product';
+  };
 
   const products = imageUrls.map((url, index) => ({
     id: index + 1,
     name: extractNameFromImageUrl(url),
-    price: '$' + (20 + (index % 5) * 5),
+    price: `$${20 + (index % 5) * 5}`,
     imageUrl: url,
     description: '',
   }));
 
   const sections = [
-    { title: 'Most Viewed Items', link: '/most-viewed', products: products.slice(0, 5), color: 'bg-red-500' },
-    { title: 'Top Deals', link: '/top-deals', products: products.slice(5, 10), color: 'bg-blue-500' },
-    { title: 'Top Selling Items', link: '/top-selling', products: products.slice(10, 15), color: 'bg-green-500' },
-    { title: 'Top Deals for You', link: '/top-deals-for-you', products: products.slice(15, 20), color: 'bg-yellow-500' },
-    { title: 'More Deals', link: '/more-deals', products: products.slice(20, 25), color: 'bg-purple-500' },
+    {
+      title: 'Featured Hats',
+      link: '/categories/featured-hats',
+      color: 'bg-blue-500',
+      products: products.slice(0, 5), // Customize the number of products per section
+    },
+    {
+      title: 'Best Sellers',
+      link: '/categories/best-sellers',
+      color: 'bg-green-500',
+      products: products.slice(5, 10),
+    },
+    {
+      title: 'New Arrivals',
+      link: '/categories/new-arrivals',
+      color: 'bg-red-500',
+      products: products.slice(10, 15),
+    },
   ];
+
   return (
     <Layout>
       <Head>
@@ -67,7 +74,12 @@ const HomePage: React.FC = () => {
 
       {/* Hero Section */}
       <div className="hero relative h-96 flex items-center justify-center text-black">
-        <Image src={heroBanner} alt="Hero Banner" layout="fill" objectFit="cover" />
+        <Image
+          src={imageUrls[0]}
+          alt="Hero Banner"
+          layout="fill"
+          objectFit="cover"
+        />
         <div className="absolute text-center">
           <h1 className="text-4xl font-bold mb-4">Find Your Perfect Hat</h1>
           <p className="text-lg mb-4">Stylish and Comfortable Hats for Every Occasion</p>
@@ -101,7 +113,7 @@ const HomePage: React.FC = () => {
 
       {/* Carousel Section */}
       <div className="carousel-container py-8">
-        <Carousel imageUrls={imageUrls.slice(0, 5)} />
+        <Carousel imageUrls={imageUrls.slice(1, 6)} /> {/* Exclude the hero banner */}
       </div>
 
       {/* Featured Categories */}
