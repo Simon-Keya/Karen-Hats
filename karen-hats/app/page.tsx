@@ -1,3 +1,5 @@
+"use client";
+
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -9,7 +11,6 @@ import Layout from './layout';
 
 const HomePage: React.FC = () => {
   const imageUrls = [
-    '/images/hero-banner.jpg',
     '/images/hat1.jpg',
     '/images/Black Bucket Hat.png',
     '/images/47 New York Yankees MLB Classic Baseball Hat.png',
@@ -44,12 +45,13 @@ const HomePage: React.FC = () => {
     description: '',
   }));
 
+  // Grouping products into sections
   const sections = [
     {
       title: 'Featured Hats',
       link: '/categories/featured-hats',
       color: 'bg-blue-500',
-      products: products.slice(0, 5), // Customize the number of products per section
+      products: products.slice(0, 5), 
     },
     {
       title: 'Best Sellers',
@@ -75,16 +77,16 @@ const HomePage: React.FC = () => {
       {/* Hero Section */}
       <div className="hero relative h-96 flex items-center justify-center text-black">
         <Image
-          src={imageUrls[0]}
+          src="/images/hero-banner.jpg"
           alt="Hero Banner"
           layout="fill"
           objectFit="cover"
         />
-        <div className="absolute text-center">
+        <div className="absolute text-center bg-opacity-70 bg-white p-6 rounded-lg shadow-lg">
           <h1 className="text-4xl font-bold mb-4">Find Your Perfect Hat</h1>
           <p className="text-lg mb-4">Stylish and Comfortable Hats for Every Occasion</p>
           <Link href="/shop">
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300 transform hover:scale-105">
               Shop Now
             </button>
           </Link>
@@ -92,20 +94,20 @@ const HomePage: React.FC = () => {
       </div>
 
       {/* Features Section */}
-      <div className="features flex justify-around py-8 bg-gray-100">
-        <Link href="/shipping" className="feature text-center">
+      <div className="features flex flex-wrap justify-around py-8 bg-gray-100">
+        <Link href="/shipping" className="feature text-center mb-4 hover:scale-105 transition-transform duration-300">
           <FaShippingFast className="text-3xl text-blue-500 mx-auto mb-2" />
           <p>Fast Shipping</p>
         </Link>
-        <Link href="/payment" className="feature text-center">
+        <Link href="/payment" className="feature text-center mb-4 hover:scale-105 transition-transform duration-300">
           <FaCreditCard className="text-3xl text-green-500 mx-auto mb-2" />
           <p>Secure Payments</p>
         </Link>
-        <Link href="/privacy" className="feature text-center">
+        <Link href="/privacy" className="feature text-center mb-4 hover:scale-105 transition-transform duration-300">
           <FaLock className="text-3xl text-red-500 mx-auto mb-2" />
           <p>Data Protection</p>
         </Link>
-        <Link href="/quality" className="feature text-center">
+        <Link href="/quality" className="feature text-center mb-4 hover:scale-105 transition-transform duration-300">
           <FaStar className="text-3xl text-yellow-500 mx-auto mb-2" />
           <p>Top Quality</p>
         </Link>
@@ -113,38 +115,27 @@ const HomePage: React.FC = () => {
 
       {/* Carousel Section */}
       <div className="carousel-container py-8">
-        <Carousel imageUrls={imageUrls.slice(1, 6)} /> {/* Exclude the hero banner */}
+        <Carousel />
       </div>
 
       {/* Featured Categories */}
       <div className="categories-container py-8">
-        <h2 className="text-2xl font-bold text-center mb-6">Shop by Category</h2>
-        <div className="flex justify-around">
-          {['Bucket Hats', 'Baseball Caps', 'Beanies', 'Sun Hats'].map((category, index) => (
-            <Link key={index} href={`/categories/${category.toLowerCase().replace(' ', '-')}`}>
-              <div className={`category bg-${['blue', 'red', 'green', 'yellow'][index]}-500 text-white text-center py-4 px-6 rounded-lg`}>
-                <h3>{category}</h3>
-              </div>
-            </Link>
-          ))}
+        <h2 className="text-2xl font-bold text-center mb-6">Explore Our Collections</h2>
+        <div className="flex flex-col gap-10 sm:flex-row sm:flex-wrap sm:justify-around">
+          <ProductList sections={sections} showAddToCart={true} />
         </div>
-      </div>
-
-      {/* Product Sections */}
-      <div className="container mx-auto py-8">
-        <ProductList sections={sections} showAddToCart={true} />
       </div>
 
       {/* Customer Reviews */}
       <div className="reviews bg-gray-200 py-8">
         <h2 className="text-2xl font-bold text-center mb-6">Customer Reviews</h2>
-        <div className="flex justify-around">
+        <div className="flex flex-wrap justify-around">
           {[
             { text: "Amazing quality and fast delivery!", author: "- John D." },
             { text: "The best hats I've ever bought!", author: "- Sarah W." },
             { text: "Stylish and comfortable, highly recommend!", author: "- Alex K." },
           ].map((review, index) => (
-            <div key={index} className="review bg-white p-4 rounded-lg shadow-md">
+            <div key={index} className="review bg-white p-4 rounded-lg shadow-md mb-4 transition-transform duration-300 hover:scale-105">
               <p>{review.text}</p>
               <p className="font-bold mt-2">{review.author}</p>
             </div>
@@ -163,11 +154,30 @@ const HomePage: React.FC = () => {
             className="p-2 rounded text-gray-700 mb-4"
             required
           />
-          <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+          <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded transition-transform duration-300 hover:scale-105">
             Subscribe
           </button>
         </div>
       </div>
+
+      {/* Responsive Design */}
+      <style jsx>{`
+        @media (max-width: 768px) {
+          .hero {
+            height: 80vh;
+          }
+          .features, .categories-container {
+            flex-direction: column;
+          }
+          .feature, .category {
+            width: 100%;
+            margin-bottom: 1rem;
+          }
+          .carousel-container, .reviews, .newsletter {
+            padding: 2rem 1rem;
+          }
+        }
+      `}</style>
     </Layout>
   );
 };

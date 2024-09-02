@@ -11,16 +11,17 @@ interface ProductCardProps {
     price: number | string;
     imageUrl: string;
   };
-  showAddToCart: boolean; // Add this prop
+  showAddToCart: boolean;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product, showAddToCart }) => {
-  const formattedPrice = typeof product.price === 'number'
-    ? product.price.toFixed(2)
-    : parseFloat(product.price).toFixed(2);
+  const formattedPrice =
+    typeof product.price === 'number'
+      ? product.price.toFixed(2)
+      : parseFloat(product.price).toFixed(2);
 
   return (
-    <div className="border rounded-lg shadow-lg overflow-hidden bg-white">
+    <div className="relative border rounded-lg shadow-lg overflow-hidden bg-white transition-transform transform hover:scale-105 hover:shadow-xl">
       <Link href={`/products/${product.id}`} passHref>
         <span className="relative block w-full h-48 cursor-pointer">
           <Image 
@@ -28,21 +29,23 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, showAddToCart }) => 
             alt={product.name} 
             layout="fill"
             objectFit="cover"
-            className="w-full h-full"
+            className="w-full h-full transition-opacity duration-300 ease-in-out hover:opacity-80"
           />
           <div className="absolute inset-0 bg-transparent" aria-hidden="true"></div>
         </span>
       </Link>
-      <div className="p-4">
+      <div className="p-4 pb-20">
         <h2 className="text-xl font-semibold mb-2 text-gray-800">{product.name}</h2>
-        {product.description && <p className="text-gray-600 mb-4">{product.description}</p>}
-        <p className="text-lg text-gray-800">Ksh {formattedPrice}</p>
-        {showAddToCart && ( // Conditionally render button
-          <button className="mt-4 w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded flex items-center justify-center">
-            <FaShoppingCart className="mr-2" /> Add to Cart
-          </button>
+        {product.description && (
+          <p className="text-gray-600 mb-4">{product.description}</p>
         )}
+        <p className="text-lg text-gray-800">Ksh {formattedPrice}</p>
       </div>
+      {showAddToCart && (
+        <button className="absolute bottom-0 left-0 w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-6 flex items-center justify-center transition-all duration-300">
+          <FaShoppingCart className="mr-2" /> Add to Cart
+        </button>
+      )}
     </div>
   );
 };

@@ -31,7 +31,6 @@ const Footer: React.FC = () => {
                 <li><span onClick={() => handleNavigation('/products')} className="cursor-pointer hover:text-gray-400">Products</span></li>
                 <li><span onClick={() => handleNavigation('/cart')} className="cursor-pointer hover:text-gray-400">Cart</span></li>
                 <li><span onClick={() => handleNavigation('/profile')} className="cursor-pointer hover:text-gray-400">Profile</span></li>
-                <li><span onClick={() => handleNavigation('/admin')} className="cursor-pointer hover:text-gray-400">Admin</span></li>
               </ul>
             </div>
             <div className="mb-4 md:mb-0">
