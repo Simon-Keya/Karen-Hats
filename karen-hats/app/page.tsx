@@ -11,7 +11,6 @@ import Layout from './layout';
 
 const HomePage: React.FC = () => {
   const imageUrls = [
-    '/images/hat1.jpg',
     '/images/Black Bucket Hat.png',
     '/images/47 New York Yankees MLB Classic Baseball Hat.png',
     '/images/2pcs Couple Heart Embroidery Bucket Hat.png',

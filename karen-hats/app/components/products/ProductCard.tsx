@@ -21,9 +21,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, showAddToCart }) => 
       : parseFloat(product.price).toFixed(2);
 
   return (
-    <div className="relative border rounded-lg shadow-lg overflow-hidden bg-white transition-transform transform hover:scale-105 hover:shadow-xl">
-      <Link href={`/products/${product.id}`} passHref>
-        <span className="relative block w-full h-48 cursor-pointer">
+    <Link href={`/products/${product.id}`} passHref legacyBehavior>
+      <div className="relative border rounded-lg shadow-lg overflow-hidden bg-white transition-transform transform hover:scale-105 hover:shadow-xl cursor-pointer">
+        <span className="relative block w-full h-48">
           <Image 
             src={product.imageUrl} 
             alt={product.name} 
@@ -33,20 +33,20 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, showAddToCart }) => 
           />
           <div className="absolute inset-0 bg-transparent" aria-hidden="true"></div>
         </span>
-      </Link>
-      <div className="p-4 pb-20">
-        <h2 className="text-xl font-semibold mb-2 text-gray-800">{product.name}</h2>
-        {product.description && (
-          <p className="text-gray-600 mb-4">{product.description}</p>
+        <div className="p-4 pb-20">
+          <h2 className="text-xl font-semibold mb-2 text-gray-800">{product.name}</h2>
+          {product.description && (
+            <p className="text-gray-600 mb-4">{product.description}</p>
+          )}
+          <p className="text-lg text-gray-800">Ksh {formattedPrice}</p>
+        </div>
+        {showAddToCart && (
+          <button className="absolute bottom-0 left-0 w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-6 flex items-center justify-center transition-all duration-300">
+            <FaShoppingCart className="mr-2" /> Add to Cart
+          </button>
         )}
-        <p className="text-lg text-gray-800">Ksh {formattedPrice}</p>
       </div>
-      {showAddToCart && (
-        <button className="absolute bottom-0 left-0 w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-6 flex items-center justify-center transition-all duration-300">
-          <FaShoppingCart className="mr-2" /> Add to Cart
-        </button>
-      )}
-    </div>
+    </Link>
   );
 };
 

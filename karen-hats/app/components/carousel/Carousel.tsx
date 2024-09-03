@@ -13,16 +13,14 @@ const Carousel: React.FC<CarouselProps> = ({
   autoSlideInterval = 3000,
 }) => {
   const images = [
-    '/images/47 New York Yankees MLB Classic Baseball Hat.png',
-    '/images/2pcs Couple Heart Embroidery Bucket Hat.png',
-    '/images/Two Tone Plaid Pattern Bucket Hat.png',
-    '/images/Adams Headwear - Vacationer Dyed Bucket Hat - Navy _ Large.png',
-    '/images/Bonnet Moncler Bleu.png',
-    '/images/Bowler (Derby) Wool Hat _ Conner Hats.png',
-    '/images/Bucket Hat Adidas online _ Hattar.png',
-    '/images/New York Yankees Hats Caps Aesthetic.png',
-    '/images/New Era Alabama Crimson Tide Crimson 59FIFTY Fitted Hat.png',
-      ];
+    "/images/hat1.jpg",
+    "/images/Black_Bucket_Hat.png",
+    "/images/New_York_Yankees_MLB_Classic_Baseball_Hat.png",
+    "/images/Couple_Heart_Embroidery_Bucket_Hat.png",
+    "/images/Two_Tone_Plaid_Pattern_Bucket_Hat.png",
+    "/images/another_hat.jpg",
+    "/images/yet_another_hat.jpg"
+  ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
 

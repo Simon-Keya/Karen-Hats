@@ -19,7 +19,7 @@ interface Section {
 
 interface ProductListProps {
   sections: Section[];
-  showAddToCart: boolean; // Add this prop
+  showAddToCart: boolean;
 }
 
 const ProductList: React.FC<ProductListProps> = ({ sections, showAddToCart }) => {
